@@ -170,3 +170,12 @@ if letter in vowels :
     print(f'{letter} is a vowel')
 else :
     print(f'{letter} is a consonant')
+
+
+
+# list
+l = [1, 3, 3, 2, 4]
+# set
+s = {1, 3, 3, 2, 4}
+print(l, s)
+# list와 set은 괄호의 종류가 다르고 list는 중복값 허용이나 set은 중복값이 제외된다
