@@ -8,7 +8,9 @@ print(subjects[1])
 subjects[1] = "C++"
 print(subjects[1])
 
-
+print(f'아무거나 {subjects} 출력하기')
+print('아무거나 {0} 출력하기'.format(subjects))
+print('아무거나 %s 출력하기' % subjects)
 
 # 리터럴 : 일반적으로 오른쪽에 위치
 
@@ -60,7 +62,7 @@ print(groups)
 money = 5,000,000
 print(type(money))
 
-cash = 5_000_000 # _로 하면 가능
+cash = 5_000_000  # _로 하면 가능
 print(type(cash))
 
 
