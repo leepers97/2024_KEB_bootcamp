@@ -142,4 +142,50 @@ try :
 except ValueError :
     print('해당 과목이 존재하지 않습니다')
 
+# count
+# 몇 개 있는지 세는 함수
 
+# isalnum
+# 알파벳만 있는지 검사하여 true 혹은 false 반환(띄어쓰기도 안됨)
+print(subject.isalnum())
+
+# title
+# 띄어쓰기마다 첫글자를 대문자로
+
+# upper
+# 전부 대문자로
+
+# 정렬
+# center : 가운데 정렬
+# ljust : 왼쪽 정렬
+# rjust : 오른쪽 정렬
+
+# %표기법, {}표기법, format표기법 (어제 했을듯?)
+
+# format표기 - dictionary
+subject_dic = {'python' : 'kim', 'c++' : 'sung', 'data structure' : 'kim', 'database' : 'kang'}
+print("{0[python]} {0[data structure]}".format(subject_dic))
+
+# 5장 끝부분 과제 풀어보기
+
+
+
+
+
+# chapter 6
+# 반복문
+# while문
+
+# 소수인지 판별
+number = int(input("Input number : "))
+cnt = 0;
+i = 2
+while i < number :
+    if number % i == 0 :
+        cnt += 1
+        break
+    i += 1
+if cnt == 0 :
+    print(f'{number} is prime number')
+else :
+    print(f'{number} is not prime number')
