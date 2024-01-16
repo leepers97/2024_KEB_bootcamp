@@ -124,7 +124,7 @@ print(course3.find("Inha"))
 #print(course3.index("Inha")) # index는 찾지 못하면 예외 던짐(오류)
 
 subject = "python c++ database linux"
-subject2 = input("수강신청과목 입력 : ")
+#subject2 = input("수강신청과목 입력 : ")
 # if subject.find(subject2) != -1:
 #     print(f'해당 과목은 존재합니다. 그리고 위치는 {subject.find(subject2)}번 인덱스입니다.')
 # else:
@@ -137,10 +137,10 @@ subject2 = input("수강신청과목 입력 : ")
 #     print('해당 과목이 존재하지 않습니다')
 
 # -> 예외처리 해주기
-try :
-    print(f'해당 과목은 존재합니다. 그리고 위치는 {subject.index(subject2)}번 인덱스입니다.')
-except ValueError :
-    print('해당 과목이 존재하지 않습니다')
+# try :
+#     print(f'해당 과목은 존재합니다. 그리고 위치는 {subject.index(subject2)}번 인덱스입니다.')
+# except ValueError :
+#     print('해당 과목이 존재하지 않습니다')
 
 # count
 # 몇 개 있는지 세는 함수
@@ -176,16 +176,84 @@ print("{0[python]} {0[data structure]}".format(subject_dic))
 # 반복문
 # while문
 
-# 소수인지 판별
-number = int(input("Input number : "))
-cnt = 0;
-i = 2
-while i < number :
-    if number % i == 0 :
-        cnt += 1
-        break
+# 소수인지 판별(while문)
+# number = int(input("Input number : "))
+# isPrime = True
+# if number < 2 :
+#     print(f'{number} is not prime number')
+# else :
+#     i = 2
+#     while i < number :
+#         if number % i == 0 :
+#             isPrime = False
+#             break
+#         i += 1
+#     if isPrime :
+#         print(f'{number} is prime number')
+#     else :
+#         print(f'{number} is not prime number')
+
+
+
+# for문
+uni = "inha"
+i = 0
+while i < len(uni) :
+    print(uni[i], end = ' ')
     i += 1
-if cnt == 0 :
-    print(f'{number} is prime number')
-else :
-    print(f'{number} is not prime number')
+
+print()
+
+for letter in uni :
+    print(letter, end = ' ')
+
+print()
+
+# for k in range(0, len(uni), 1) :
+# for k in range(0, len(uni)) :
+for k in range(len(uni)) :
+    print(uni[k], end = ' ')
+
+# 소수인지 판별(for문)
+# number = int(input("Input number : "))
+# isPrime = True
+# if number < 2 :
+#     print(f'{number} is not prime number')
+# else :
+#     for i in range(2, number) :
+#         if number % i == 0 :
+#             isPrime = False
+#             break
+#         i += 1 # 필요없지?
+#     if isPrime :
+#         print(f'{number} is prime number')
+#     else :
+#         print(f'{number} is not prime number')
+
+
+
+# 제대로 출력 x 제너레이터
+print(range(3, 9))
+# list에 담아서 출력
+print(list(range(3, 9)))
+
+# 감소하는 for문
+
+# 문제
+# 숫자 2개 입력하고 두 수 사이에 소수 출력
+number_temp = input("Input first second number : ").split()
+n1 = int(number_temp[0])
+n2 = int(number_temp[1])
+if n1 > n2 :
+    n1, n2 = n2, n1
+
+for number in range(n1, n2 + 1) :
+    isPrime = True
+    if number < 2 :
+        pass
+    else :
+        for i in range(2, number) :
+            if number % i == 0 :
+                isPrime = False
+                break
+        if isPrime : print(number, end = ' ')
