@@ -169,3 +169,70 @@ print(t11)
 a_tuple = ('aaa', 'bbb', 'ccc')
 print(type(a_tuple))
 print(type(list(a_tuple)))
+
+# split : 문자열을 list로 변환
+
+# 역방향 인덱싱 가능
+
+# 슬라이싱 가능
+
+# 역방향
+subjects = ["C++", "Java", "Python", "Java"]
+subjects[::-1] # 원본을 바꾸지 않음
+print(subjects)
+subjects.reverse() # 원본을 바꿈
+print(subjects)
+
+
+
+#원소 추가
+# append()
+# 리스트 맨 뒤에 원소 삽입
+
+# insert()
+# 원하는 곳에 원소 삽입, but 자료 많을 경우 느림 -> 교수님은 잘 안씀
+
+# 리스트의 결합
+# extend() 혹은 += 사용
+# extend()는 원본 바꾸고 +=는 업데이트
+
+# mutable하므로 값 변경 가능
+# 슬라이싱으로도 값 변경 가능
+subjects[:1] = ["C"]
+print(subjects)
+
+
+
+# 원소 삭제
+# del, remove() 사용
+# remove는 같은 값이 있으면 맨 앞의 값만 삭제
+subjects.remove("Java")
+# del subjects[2]
+print(subjects)
+
+# pop()
+# 맨 뒤를 삭제 -> 속도가 빠름
+
+# clear()
+# 모든 원소 삭제
+
+
+
+# in
+# 해당 값이 있으면 True를 반환, 없으면 False를 반환
+print("C" in subjects)
+
+# join(), split()
+# 어제 배운 것과 같음
+
+# sort(), sorted()
+# sort는 원본을 바꾸지만 sorted는 원본을 유지하고 사본을 생성
+# list 안에 자료형이 다르면 오류남
+subjects.sort()
+# subjects.sort(reverse = True) # 역순으로
+print(subjects)
+
+copy_subjects = sorted(subjects)
+print(subjects)
+print(copy_subjects)
+
