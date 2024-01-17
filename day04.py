@@ -212,6 +212,7 @@ print(subjects)
 
 # pop()
 # 맨 뒤를 삭제 -> 속도가 빠름
+# 삭제 후 리턴
 
 # clear()
 # 모든 원소 삭제
@@ -236,3 +237,151 @@ copy_subjects = sorted(subjects)
 print(subjects)
 print(copy_subjects)
 
+
+
+# 얕은 복사, 깊은 복사
+# mutable한 값을 바꾸면 얕은 복사 한 것들은 모두 바뀜
+# 바뀌는 것을 원치 않으면 깊은 복사 해야 함
+import copy
+#sub = ["a", "b", "c"]
+sub = ["a", ["b", "c"], "d"]
+a = sub
+b = sub.copy()
+c = list(sub)
+d = sub[:]
+e = copy.deepcopy(a)
+print(sub, a, b, c, d, e)
+
+#sub[1] = "x"
+sub[1][1] = "x"
+print(sub, a, b, c, d, e) # 깊은 복사한 e만 바뀌지 않음
+
+# 리스트가 튜플보다 기능이 많지만 성능은 튜플이 좋음(메모리 적게 차지, 실수로 바뀔 일 없음, 딕셔너리의 키값으로 사용 가능(딕셔너리의 키값은 immutable 해야함))
+
+# zip()
+# 가장 적은 수의 리스트를 기준으로 여러 개의 컨테이너를 돌릴 수 있음
+
+
+
+# 값 추가하는 짧고 간편한 방법 (list comprehension)
+# 1. 무식한 방법
+# squares = list()
+# squares.append(1 * 1)
+# squares.append(2 * 2)
+# squares.append(3 * 3)
+# squares.append(4 * 4)
+# squares.append(5 * 5)
+
+# 2. for문 사용
+# squares = list()
+# for i in range(1, 6, 1) :
+#     squares.append(i * i)
+# print(squares)
+
+# 3. list comprehension(축약 표현) 사용
+squares = [i * i for i in range(1, 6, 1)]
+print(squares)
+
+# list comprehension 사용 + 조건 달기
+even_squared = [i * i for i in range(1, 6, 1) if i % 2 == 0]
+print(even_squared)
+
+
+
+# chapter 8
+# 딕셔너리, 셋
+
+# 딕셔너리
+# {} (중괄호) 사용
+# :쓰기 귀찮으면 dict함수를 사용(다만 그러면 변수 이름에 공백이나 예약어 사용 불가능)
+# 튜플이나 리스트를 딕셔너리화 가능
+# mutable
+sugang = dict(python = "kim", db = "kang", cpp = "sung")
+sugang["data structure"] = "kim" # 추가
+sugang["data structure"] = "park" # 수정
+print(sugang)
+print(sugang["db"])
+print(sugang.get("db"))
+# get() 사용 시 두 번째 인수로 찾지 못했을 경우 어떻게 출력할지 정할 수 있음
+print(sugang.get("open source", "not exist"))
+
+
+
+for subj, professor in sugang.items() :
+    print(f'{subj} 과목 담당교수는 {professor}입니다')
+
+# keys()
+# 키값들만 꺼내줌
+for k in sugang.keys() :
+    print(k)
+
+# values()
+# 밸류값들만 꺼내줌
+for v in sugang.values() :
+    print(v)
+
+# items
+# 키값과 밸류값 모두 꺼내줌
+# 튜플에 담겨서 나옴
+for s in sugang.items() :
+    print(s)
+
+
+
+# 딕셔너리를 이용한 술안주 추천
+import random
+drink_foods = {"위스키" : "초콜릿", "와인" : "치즈", "소주" : "삼겹살", "고량주" : "양꼬치"}
+#del drink_foods["위스키"]
+#drink_foods["사케"] = "광어회"
+japan_drinks_foods = {"사케" : "광어회", "위스키" : "낙곱새"} # 위스키를 덮어씀
+drink_foods.update(japan_drinks_foods)
+
+#drink = input(drink_foods.keys())
+drink_foods_keys = list(drink_foods)
+# drink = input(f"다음 술 중에 고르세요\n1) {drink_foods_keys[0]}  2) {drink_foods_keys[1]}  3) {drink_foods_keys[2]}  4) {drink_foods_keys[3]} : ")
+# print(drink_foods[drink])
+# print(random.choice(drink_foods_keys)) # 튜플, 리스트 등 가능
+
+while True :
+    menu = input(f"다음 술 중에 고르세요\n1) {drink_foods_keys[0]}  2) {drink_foods_keys[1]}  3) {drink_foods_keys[2]}  4) {drink_foods_keys[3]}  5) {drink_foods_keys[4]}  6) 아무거나  7) 종료: ")
+    if menu == '1' :
+        print(f'{drink_foods_keys[0]}에 어울리는 안주는 {drink_foods[drink_foods_keys[0]]} 입니다')
+    elif menu == '2' :
+        print(f'{drink_foods_keys[1]}에 어울리는 안주는 {drink_foods[drink_foods_keys[1]]} 입니다')
+    elif menu == '3' :
+        print(f'{drink_foods_keys[2]}에 어울리는 안주는 {drink_foods[drink_foods_keys[2]]} 입니다')
+    elif menu == '4' :
+        print(f'{drink_foods_keys[3]}에 어울리는 안주는 {drink_foods[drink_foods_keys[3]]} 입니다')
+    elif menu == '5':
+        print(f'{drink_foods_keys[4]}에 어울리는 안주는 {drink_foods[drink_foods_keys[4]]} 입니다')
+    elif menu == '6':
+        random_drink = random.choice(drink_foods_keys)
+        print(f'{random_drink}에 어울리는 안주는 {drink_foods[random_drink]} 입니다')
+    elif menu == '7' :
+        print(f'다음에 또 오세요')
+        break
+
+
+
+# 딕셔너리 합치기
+# {**a, **b}
+# 겹치면 나중 것이 오버라이트(덮어씀)
+# 얕은 복사
+
+# update()
+# 기존 딕셔너리를 업데이트함(추가)
+# 만약 두 딕셔너리의 키가 같다면 두 번째 딕셔너리가 덮어쓴다
+
+
+
+# 딕셔너리 삭제
+# 1. del
+
+# 2. pop()
+# 삭제 후 리턴
+# 없애는 내용이 없을 시 두 번째 인자에 넣은 내용 출력 가능
+
+
+
+# 과제
+# 205p 연습문제 8.10까지 (10문제)
