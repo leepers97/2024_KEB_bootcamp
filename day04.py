@@ -106,7 +106,7 @@
 #         print("Wrong Input")
 
 
-
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # chapter 7
 # 튜플과 리스트
@@ -136,6 +136,8 @@ t8 = tuple()
 print(type(t7), type(t8))
 
 # + 내용
+aaa = 'aaa',
+print(type(aaa))
 print(type('aaa',)) # string
 print(type(('aaa',))) # tuple
 
@@ -160,7 +162,7 @@ print(t11)
 
 # 풀었던 문제에서 n1 n2쪽 다시 봐보기
 
-
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # list
 # 아무거나 다 담을 수 있음, but 그러면 성능 이슈 발생
@@ -178,7 +180,7 @@ print(type(list(a_tuple)))
 
 # 역방향
 subjects = ["C++", "Java", "Python", "Java"]
-subjects[::-1] # 원본을 바꾸지 않음
+print(subjects[::-1]) # 원본을 바꾸지 않음
 print(subjects)
 subjects.reverse() # 원본을 바꿈
 print(subjects)
@@ -253,8 +255,11 @@ e = copy.deepcopy(a)
 print(sub, a, b, c, d, e)
 
 #sub[1] = "x"
+print(id(a), id(b), id(c))
 sub[1][1] = "x"
+#sub[0] = "x"
 print(sub, a, b, c, d, e) # 깊은 복사한 e만 바뀌지 않음
+print(id(sub), id(a), id(b), id(c))
 
 # 리스트가 튜플보다 기능이 많지만 성능은 튜플이 좋음(메모리 적게 차지, 실수로 바뀔 일 없음, 딕셔너리의 키값으로 사용 가능(딕셔너리의 키값은 immutable 해야함))
 
@@ -286,7 +291,7 @@ print(squares)
 even_squared = [i * i for i in range(1, 6, 1) if i % 2 == 0]
 print(even_squared)
 
-
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # chapter 8
 # 딕셔너리, 셋
@@ -307,7 +312,7 @@ print(sugang.get("open source", "not exist"))
 
 
 
-for subj, professor in sugang.items() :
+for subj, professor in sugang.items() : # subj는 키, professor는 값
     print(f'{subj} 과목 담당교수는 {professor}입니다')
 
 # keys()
@@ -342,24 +347,24 @@ drink_foods_keys = list(drink_foods)
 # print(drink_foods[drink])
 # print(random.choice(drink_foods_keys)) # 튜플, 리스트 등 가능
 
-while True :
-    menu = input(f"다음 술 중에 고르세요\n1) {drink_foods_keys[0]}  2) {drink_foods_keys[1]}  3) {drink_foods_keys[2]}  4) {drink_foods_keys[3]}  5) {drink_foods_keys[4]}  6) 아무거나  7) 종료: ")
-    if menu == '1' :
-        print(f'{drink_foods_keys[0]}에 어울리는 안주는 {drink_foods[drink_foods_keys[0]]} 입니다')
-    elif menu == '2' :
-        print(f'{drink_foods_keys[1]}에 어울리는 안주는 {drink_foods[drink_foods_keys[1]]} 입니다')
-    elif menu == '3' :
-        print(f'{drink_foods_keys[2]}에 어울리는 안주는 {drink_foods[drink_foods_keys[2]]} 입니다')
-    elif menu == '4' :
-        print(f'{drink_foods_keys[3]}에 어울리는 안주는 {drink_foods[drink_foods_keys[3]]} 입니다')
-    elif menu == '5':
-        print(f'{drink_foods_keys[4]}에 어울리는 안주는 {drink_foods[drink_foods_keys[4]]} 입니다')
-    elif menu == '6':
-        random_drink = random.choice(drink_foods_keys)
-        print(f'{random_drink}에 어울리는 안주는 {drink_foods[random_drink]} 입니다')
-    elif menu == '7' :
-        print(f'다음에 또 오세요')
-        break
+# while True :
+#     menu = input(f"다음 술 중에 고르세요\n1) {drink_foods_keys[0]}  2) {drink_foods_keys[1]}  3) {drink_foods_keys[2]}  4) {drink_foods_keys[3]}  5) {drink_foods_keys[4]}  6) 아무거나  7) 종료: ")
+#     if menu == '1' :
+#         print(f'{drink_foods_keys[0]}에 어울리는 안주는 {drink_foods[drink_foods_keys[0]]} 입니다')
+#     elif menu == '2' :
+#         print(f'{drink_foods_keys[1]}에 어울리는 안주는 {drink_foods[drink_foods_keys[1]]} 입니다')
+#     elif menu == '3' :
+#         print(f'{drink_foods_keys[2]}에 어울리는 안주는 {drink_foods[drink_foods_keys[2]]} 입니다')
+#     elif menu == '4' :
+#         print(f'{drink_foods_keys[3]}에 어울리는 안주는 {drink_foods[drink_foods_keys[3]]} 입니다')
+#     elif menu == '5':
+#         print(f'{drink_foods_keys[4]}에 어울리는 안주는 {drink_foods[drink_foods_keys[4]]} 입니다')
+#     elif menu == '6':
+#         random_drink = random.choice(drink_foods_keys)
+#         print(f'{random_drink}에 어울리는 안주는 {drink_foods[random_drink]} 입니다')
+#     elif menu == '7' :
+#         print(f'다음에 또 오세요')
+#         break
 
 
 
@@ -383,5 +388,12 @@ while True :
 
 
 
+# 튜플을 딕셔너리 키로 사용할 때
+a = {(1, 2) : 3, (5, 4) : 9}
+print(a)
+print(a[(1, 2)])
+
+# b = {[1, 2] : 3, [5, 4] : 9} # 리스트는 mutable하므로 키값에 쓸 수 없어 오류남
+# print(b)
 # 과제
 # 205p 연습문제 8.10까지 (10문제)
