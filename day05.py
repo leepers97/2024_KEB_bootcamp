@@ -161,3 +161,123 @@ print(run_function(squares, 9, 10))
 
 
 
+# 두 개 비교해보자
+def out_func(nout) :
+    def inner_func(nin) :
+        return nin * nin
+    return inner_func(nout)
+
+print(out_func(5))
+
+# closures
+def out_func(nout):
+    def inner_func():
+        return nout * nout
+    return inner_func
+
+x = out_func(9)
+print(type(x))
+print(x)
+print(x())
+
+
+
+# map
+# 1. 일반적인 방법
+numbers = ["7", "-11", "3"]
+hap = 0
+for number in numbers :
+    hap += int(number)
+print(hap)
+
+# 2. map 사용 방법
+numbers2 = ["7", "-11", "3"]
+print(sum(map(int, numbers2)))
+
+# map 사용 - 소수 구하기(menu 4번)
+# while True :
+#     menu = input("1) Fahrenheit -> Celsius   2) Celsius -> Fahrenheit   3. Judge Prime number   4. Range based prime number   5) Quit program : ")
+#     if menu == '1' :
+#         fahrenheit = float(input("Input Fahrenheit : "))
+#         print(f'Fahrenheit : {fahrenheit}F, Celsius : {((fahrenheit - 32.0) * 5 / 9) : .4f}C')
+#     elif menu == '2' :
+#         celsius = float(input("Input Celsius : "))
+#         print(f'Celsius : {celsius}C, Fahrenheit : {((celsius * 9 / 5) + 32) : .4f}C')
+#     elif menu == '3' :
+#         number = int(input("Input number : "))
+#         if isPrime(number) :
+#             print(f'{number} is prime number')
+#         else:
+#             print(f'{number} is not prime number')
+#     elif menu == '4' :
+#         n1, n2 = map(int, input("Input first second number : ").split())
+#         n1, n2 = min(n1, n2), max(n1, n2)
+#         # number_temp = input("Input first second number : ").split()
+#         # n1 = int(number_temp[0])
+#         # n2 = int(number_temp[1])
+#
+#         # if n1 > n2:
+#         #     n1, n2 = n2, n1
+#
+#         for number in range(n1, n2 + 1) :
+#             if isPrime(number) :
+#                 print(number, end=' ')
+#                 print()
+#     elif menu == '5' :
+#         print("Terminate Program")
+#         break
+#     else :
+#         print("Wrong Input")
+
+
+
+# 람다 함수
+# 한 번 쓰고 버릴 때 사용
+def squares2(n) :
+    return n * n
+
+even_number = [i for i in range(51) if i % 2 == 0]
+
+# 1. 람다 미사용
+print(tuple(map(squares2, even_number)))
+
+# 2. 람다 사용
+# 기본
+print(tuple(map(lambda x : x**2, even_number)))
+# 변수에 넣어서도 가능
+z = lambda x : pow(x, 2)
+print(tuple(map(z, even_number)))
+
+
+
+# generator
+# 생성 후 바로 삭제하기 때문에 메모리를 매우 적게 사용, 하지만 기억 못함
+# return 대신 yield 사용 -> 값 보내고 다시 돌아옴
+def my_range(first = 0, last = 10, step = 1) :
+    num = first
+    while num < last :
+        yield num
+        num += step
+
+r = my_range()
+print(r, type(r))
+
+for x in r :
+    print(x)
+
+# 제너레이터는 기억되지 않기 때문에 두 번째부터 안찍힘
+for x in r :
+    print(x)
+
+# 제너레이터 컴프리헨션
+
+
+
+# 데코레이터
+# SOLID 중 O : 개방 폐쇄 원칙 -> 확장에는 열려있고 수정에는 닫혀있어야 한다
+# = 기존 코드를 수정하면 안되고 내용 추가하는데는 문제 없어야 함
+
+# inhadeepblue
+
+# 과제
+# 242p 연습문제
