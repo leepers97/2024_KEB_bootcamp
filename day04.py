@@ -346,7 +346,6 @@ drink_foods_keys = list(drink_foods)
 # drink = input(f"다음 술 중에 고르세요\n1) {drink_foods_keys[0]}  2) {drink_foods_keys[1]}  3) {drink_foods_keys[2]}  4) {drink_foods_keys[3]} : ")
 # print(drink_foods[drink])
 # print(random.choice(drink_foods_keys)) # 튜플, 리스트 등 가능
-
 # while True :
 #     menu = input(f"다음 술 중에 고르세요\n1) {drink_foods_keys[0]}  2) {drink_foods_keys[1]}  3) {drink_foods_keys[2]}  4) {drink_foods_keys[3]}  5) {drink_foods_keys[4]}  6) 아무거나  7) 종료: ")
 #     if menu == '1' :
@@ -393,7 +392,22 @@ a = {(1, 2) : 3, (5, 4) : 9}
 print(a)
 print(a[(1, 2)])
 
+# 딕셔너리 컴프리헨션
+# 리스트도 컴프리헨션 있는데 튜플은 없음
+univ = 'inha university'
+counts_alphabet = {letter : univ.count(letter) for letter in univ}
+print(counts_alphabet)
+
+counts_alphabet2 = dict() # 풀어쓰면 이렇게
+for letter in univ :
+    counts_alphabet2[letter] = univ.count(letter)
+print(counts_alphabet2)
+
 # b = {[1, 2] : 3, [5, 4] : 9} # 리스트는 mutable하므로 키값에 쓸 수 없어 오류남
 # print(b)
 # 과제
 # 205p 연습문제 8.10까지 (10문제)
+
+# 10. 딕셔너리 컴프리헨션으로 squares딕셔너리를 생성한다. range(10)을 키로 하고, 각 키의 제곱을 값으로 한다
+squares = {i : pow(i, 2) for i in range(10)}
+print(squares)
