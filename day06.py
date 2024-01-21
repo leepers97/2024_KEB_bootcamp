@@ -56,26 +56,26 @@ def factorial_2(n) -> int :
 class OopsExecption(Exception) :
     print("oops")
 
-import random
-num_list = [random.randint(1, 100) for i in range(9)]
-print(num_list)
-try:
-    pick = int(input(f'Input index (0 ~ {len(num_list) - 1})'))
-    print(num_list[pick])
-    print(5 / 0)
-    raise OopsExecption("oops") # 예외 강제로 발생시키기
-except IndexError as err: # 인덱스 범위 벗어날 때, as ...은 시스템이 던져주는 에러 메시지
-    print(f"Wrong index number\n{err}")
-except ValueError: # 문자 등 숫자 외외의 것이 왔을 때
-    print(f"Input Only Number")
-except ZeroDivisionError as err :
-    print(f"Denominator cannot be 0\n{err}")
-except OopsExecption as err :
-    print(f"Oops Oops\n{err}")
-except Exception : # 나머지 에러 (맨 아래에 있어야 함)
-    print("Error occurs")
-else :
-    print(f"Program terminated")
+# import random
+# num_list = [random.randint(1, 100) for i in range(9)]
+# print(num_list)
+# try:
+#     pick = int(input(f'Input index (0 ~ {len(num_list) - 1})'))
+#     print(num_list[pick])
+#     print(5 / 0)
+#     raise OopsExecption("oops") # 예외 강제로 발생시키기
+# except IndexError as err: # 인덱스 범위 벗어날 때, as ...은 시스템이 던져주는 에러 메시지
+#     print(f"Wrong index number\n{err}")
+# except ValueError: # 문자 등 숫자 외외의 것이 왔을 때
+#     print(f"Input Only Number")
+# except ZeroDivisionError as err :
+#     print(f"Denominator cannot be 0\n{err}")
+# except OopsExecption as err :
+#     print(f"Oops Oops\n{err}")
+# except Exception : # 나머지 에러 (맨 아래에 있어야 함)
+#     print("Error occurs")
+# else :
+#     print(f"Program terminated")
 
 
 

@@ -1,5 +1,5 @@
 # 포켓몬 게임
-# Reference : 포켓몬스터dp - 사천왕 + 챔피언
+# Reference : 포켓몬스터dp - 챔피언과 최종전
 
 
 
@@ -10,20 +10,15 @@
 #
 #   2) 플레이어 이름 입력
 #
-# 2. 포켓몬 선택
-#   1) 만나게 될 적 이름 출력 (+ 적 포켓몬 info 제공할지?)
-#
-#   2) 타입 골고루 10 ~ 12가지 포켓몬 중 6마리 선택
-#
-# 3. 대화
+# 2. 대화
 #   1) 상대할 적과 간단한 대화 후 전투 진입
 #
-# 4. 전투
-#   1) 적과의 전투 시작 (총 5회)
+# 3. 전투
+#   1) 적과의 전투 시작
 #
-#   2-1) 승리 시 -> 상대할 적이 남았다면 2번 포켓몬 선택 단계로, 상대할 적이 없다면 축하 메시지 출력
+#   2-1) 승리 시 -> 축하 메시지 출력
 #
-#   2-2) 패배 시 -> 1. 다시 도전 2. 포기   선택지에서 1 입력 시 가장 최근 상대한 적과 재대결, 2 입력 시 게임 종료
+#   2-2) 패배 시 -> 패배 메시지 출력
 
 
 
@@ -57,35 +52,8 @@
 #       - 로즈레이드(타입 - 독/풀, 약점 - 불꽃,비행,얼음,에스퍼, 강점 - 격투,물,전기,풀(0.25배), 기술 - 기가드레인,꽃잎댄스,오물폭탄,섀도볼)
 #       - 한카리아스(타입 - 땅/드래곤, 약점 - 얼음(4배),드래곤, 강점 - 독,바위,불꽃,전기(무효), 기술 - 드래곤크루,지진,깨물어부수기,스톤에지)
 #       - 피카츄(타입 - 전기, 약점 - 땅, 강점 - 전기,비행,강철, 기술 - 볼트태클,번개,아이언테일,전광석화)
+#
 #   1-2) 적 포켓몬 종류
-#       - 총호 : 독케일(레벨 - 53, 타입 - 벌레/독, 약점 - 비행,바위,불꽃,에스퍼)
-#               드래피온(레벨 - 57, 타입 - 독/악, 약점 - 땅)
-#               헤라크로스(레벨 - 54, 타입 - 벌레/격투, 약점 - 비행(4배),불꽃,에스퍼)
-#               비퀸(레벨 - 54, 타입 - 벌레/비행, 약점 - 비행,바위(4배),불꽃,전기,얼음)
-#               뷰티플라이(레벨 - 53, 타입 - 벌레/비행, 약점 - 비행,바위(4배),불꽃,전기,얼음)
-#               - 대체적으로 벌레 타입
-#
-#       - 들국화 : 누오(레벨 - 55, 타입 - 물/땅, 약점 - 풀)
-#                 하마돈(레벨 - 59, 타입 - 땅, 약점 - 물,풀,얼음)
-#                 딱구리(레벨 - 56, 타입 - 바위/땅, 약점 - 격투,땅,강철,물(4배),얼음)
-#                 매깅(레벨 - 55, 타입 - 물/땅, 약점 - 풀)
-#                 꼬지모(레벨 - 56, 타입 - 바위, 약점 - 격투,땅,강철,물,풀)
-#                 - 대체적으로 땅 타입
-#
-#       - 대엽 : 날쌩마(레벨 - 58, 타입 - 불, 약점 - 땅,바위,물)
-#               초염몽(레벨 - 61, 타입 - 불/격투, 약점 - 비행,땅,물,에스퍼)
-#               이어롭(레벨 - 57, 타입 - 노말, 약점 - 격투)
-#               강철톤(레벨 - 57, 타입 - 강철/땅, 약점 - 격투,땅,불꽃,물)
-#               둥실라이드(레벨 - 58, 타입 - 고스트/비행, 약점 - 바위,고스트,전기,얼음,악)
-#               - 대체적으로 불꽃 타입
-#
-#       - 오엽 : 마임맨(레벨 - 59, 타입 - 에스퍼, 약점 - 벌레, 고스트, 악)
-#               요가램(레벨 - 60, 타입 - 격투/에스퍼, 약점 - 비행,고스트)
-#               후딘(레벨 - 60, 타입 - 에스퍼, 약점 - 벌레,고스트,악)
-#               동탁군(레벨 - 63, 타입 - 강철/에스퍼, 약점 - X)
-#               키링키(레벨 - 59, 타입 - 노말/에스퍼, 약점 - 벌레,악)
-#               - 대체적으로 에스퍼 타입
-#
 #       - 난천 : 화강돌(레벨 - 61, 타입 - 고스트/악, 약점 - X)
 #               트리토돈(레벨 - 60, 타입 - 물/땅, 약점 - 풀(4배))
 #               루카리오(레벨 - 63, 타입 - 격투/강철, 약점 - 격투,땅,불꽃)
@@ -111,16 +79,97 @@
 #
 #
 
-
+import random
 class Pokemon() :
+    def __init__(self, name, max_hp, cur_hp):
+        self.name = name
+        self.max_hp = max_hp
+        self.cur_hp = max_hp
+
+    def get_hp(self):
+        return self.cur_hp
+
+    def set_hp(self, cur_hp):
+        if cur_hp <= 0 :
+            print(f"{self.name}이 기절했습니다!")
+            self.cur_hp = 0
+        else :
+            self.cur_hp = cur_hp
+
+
+class Attack() :
     def __init__(self, name):
         self.name = name
+        print("공격")
 
 # 디아루가
-#class Dialga(Pokemon) :
+class Dialga(Pokemon, Attack) :
+    def __init__(self, name, max_hp, cur_hp):
+        super().__init__(name, max_hp, cur_hp)
 
+    def attack(self, target):
+        print(f"{self.name}이(가) {target.name}을(를) '시간의 포효' 공격!")
 
+# 뮤츠
+class Mewtwo(Pokemon, Attack) :
+    def __init__(self, name, max_hp, cur_hp):
+        super().__init__(name, max_hp, cur_hp)
 
+    def attack(self, target):
+        print(f"{self.name}이(가) {target.name}을(를) '사이코 키네시스' 공격!")
+
+# 갸라도스
+class Gyarados(Pokemon, Attack) :
+    def __init__(self, name, max_hp, cur_hp):
+        super().__init__(name, max_hp, cur_hp)
+
+    def attack(self, target):
+        print(f"{self.name}이(가) {target.name}을(를) '하이드로 펌프' 공격!")
+
+# 로즈레이드
+class Roserade(Pokemon, Attack) :
+    def __init__(self, name, max_hp, cur_hp):
+        super().__init__(name, max_hp, cur_hp)
+
+    def attack(self, target):
+        print(f"{self.name}이(가) {target.name}을(를) '꽃잎댄스' 공격!")
+
+# 한카리아스
+class Garchomp(Pokemon, Attack) :
+    def __init__(self, name, max_hp, cur_hp):
+        super().__init__(name, max_hp, cur_hp)
+
+    def attack(self, target):
+        print(f"{self.name}이(가) {target.name}을(를) '드래곤크루' 공격!")
+
+# 피카츄
+class Pikachu(Pokemon, Attack) :
+    def __init__(self, name, max_hp, cur_hp):
+        super().__init__(name, max_hp, cur_hp)
+
+    def attack(self, target):
+        print(f"{self.name}이(가) {target.name}을(를) '볼트태클' 공격!")
+
+# 플레이어 포켓몬
+dialga1 = Dialga("디아루가", 100, 100)
+mewtwo1 = Mewtwo("뮤츠", 100, 100)
+gyarados1 = Gyarados("갸라도스", 100, 100)
+roserade1 = Roserade("로즈레이드", 100, 100)
+garchomp1 = Garchomp("한카리아스", 100, 100)
+pikachu1 = Pikachu("피카츄", 100, 100)
+player_pokemon_list = [dialga1, mewtwo1, gyarados1, roserade1, garchomp1, pikachu1]
+
+#dialga1.attack(garchomp1)
+#pikachu1.attack(garchomp1)
+
+# 적 포켓몬
+dialga2 = Dialga("디아루가2", 100, 100)
+mewtwo2 = Mewtwo("뮤츠2", 100, 100)
+gyarados2 = Gyarados("갸라도스2", 100, 100)
+roserade2 = Roserade("로즈레이드2", 100, 100)
+garchomp2 = Garchomp("한카리아스2", 100, 100)
+pikachu2 = Pikachu("피카츄2", 100, 100)
+enemy_pokemon_list = [dialga2, mewtwo2, gyarados2, roserade2, garchomp2, pikachu2]
 
 # 게임 시작
 is_start = False
@@ -135,8 +184,87 @@ while True :
     else:
         print("잘못된 입력입니다")
 
-# 플레이어 이름 입력
 if is_start == True :
+    # 플레이어 이름 입력
     player_name = input("플레이어 이름을 입력해주세요 : ")
     print(f"반갑습니다 {player_name}님! {player_name}님이 사용하실 포켓몬입니다.")
+    print(f"1. {dialga1.name}   2. {mewtwo1.name}   3. {gyarados1.name}   4. {roserade1.name}   5. {garchomp1.name}   6. {pikachu1.name}")
+    print(f"상대할 적은 챔피언 난천입니다.")
+    print(f"전투 진입!")
 
+    # 전투
+
+    turn = 0
+    game_over = False
+    # 현재 포켓몬
+    player_cur_pokemon = player_pokemon_list[0]
+    enemy_cur_pokemon = enemy_pokemon_list[5]
+    # 남은 포켓몬 수
+    player_cur_remain = 6
+    enemy_cur_remain = 6
+    # 다음 포켓몬
+    player_pokemon_idx = 0
+    enemy_pokemon_idx = 5
+
+    # 게임이 종료되지 않는다면 전투상황 반복
+    while game_over == False :
+        if player_cur_remain <= 0 :
+            print(f"{player_name}은(는) 눈앞이 깜깜해졌다!")
+            game_over = True
+        elif enemy_cur_remain <= 0 :
+            print("축하드립니다! 새로운 챔피언이 되셨습니다!")
+            game_over = True
+
+        # 자신의 턴일 때
+        if(turn % 2 == 0) :
+            act_choice_main = True
+            print(f"{player_name}님의 턴 입니다.")
+            act = int(input(f"행동을 선택하세요.\n1. 싸운다   2. 가방   3. 포켓몬   4. 도망간다\n"))
+            # 싸운다 선택 시
+            if (act == 1):
+                print(f"난천 현재 포켓몬 : {enemy_cur_pokemon.name}")
+                print(f"현재 포켓몬 : {player_cur_pokemon.name}")
+                # 공격 실행
+                player_cur_pokemon.attack(enemy_cur_pokemon)
+                # 랜덤 데미지 설정
+                random_dmg = random.randint(1, 100)
+                print(f"적 {enemy_cur_pokemon.name}에게 {random_dmg}만큼의 피해를 입혔습니다!")
+                enemy_cur_pokemon.set_hp(enemy_cur_pokemon.cur_hp - random_dmg)
+                print(f"적 {enemy_cur_pokemon.name}의 현재 체력은 {enemy_cur_pokemon.cur_hp}입니다.")
+                if enemy_cur_pokemon.cur_hp <= 0 :
+                    enemy_cur_remain -= 1
+                    enemy_pokemon_idx -= 1
+                    if enemy_pokemon_idx < 0:
+                        print("축하드립니다! 새로운 챔피언이 되셨습니다!")
+                        game_over = True
+                        break
+                    enemy_cur_pokemon = enemy_pokemon_list[enemy_pokemon_idx]
+                    print(f"난천이 새로운 포켓몬 {enemy_cur_pokemon.name}을(를) 내보냈습니다!")
+                    print(f"난천의 남은 포켓몬은 {enemy_cur_remain}마리 입니다.")
+                turn += 1
+            elif (act == 2):
+                print("현재 이용할 수 없습니다")
+                turn += 1
+            elif (act == 3):
+                print("현재 이용할 수 없습니다")
+                turn += 1
+            else:
+                print("지금은 도망갈 수 없습니다")
+        else :
+            print(f"난천의 턴 입니다.")
+            enemy_cur_pokemon.attack(player_cur_pokemon)
+            random_dmg = random.randint(1, 100)
+            print(f"{player_cur_pokemon.name}이(가) {random_dmg}만큼의 피해를 입었습니다!")
+            player_cur_pokemon.set_hp(player_cur_pokemon.cur_hp - random_dmg)
+            print(f"플레이어 {player_cur_pokemon.name}의 현재 체력은 {player_cur_pokemon.cur_hp}입니다.")
+            if  player_cur_pokemon.cur_hp <= 0:
+                player_cur_remain -= 1
+                player_pokemon_idx += 1
+                if player_pokemon_idx > 5 :
+                    print(f"{player_name}은(는) 눈앞이 깜깜해졌다!")
+                    game_over = True
+                    break
+                player_cur_pokemon = player_pokemon_list[player_pokemon_idx]
+                print(f"{player_name}님이 새로운 포켓몬 {player_cur_pokemon.name}을(를) 내보냈습니다!")
+                print(f"{player_name}님의 남은 포켓몬은 {player_cur_remain}마리 입니다.")
+            turn += 1
