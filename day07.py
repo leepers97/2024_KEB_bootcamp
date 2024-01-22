@@ -130,3 +130,8 @@ print(g2.fly_behavior.fly())
 
 # chapter11
 # 모듈
+#import day07_mymath
+#from day07_mymath import *
+#import day07_mymath as mm
+
+# if __name__ == "__main__"
