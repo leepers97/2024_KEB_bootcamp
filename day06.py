@@ -266,3 +266,26 @@ print(g1.name2)
 # 도망 매뉴얼(랜덤 등 사용)
 # 속성별 상성
 # getter setter, 데커레이터, 함수활용 등 여러 개 사용해보자
+
+class Gun() :
+    def __init__(self, name, dmg, speed):
+        self.name = name
+        self.dmg = dmg
+        self.speed = speed
+
+class Ak47(Gun) :
+    def __init__(self,name, dmg, speed, bullet_type):
+        super().__init__(name, dmg, speed)
+        self.bullet_type = bullet_type
+
+class M4(Gun) :
+    def __init__(self, name, dmg, speed, bullet_type):
+        super().__init__(name, dmg, speed)
+        self.bullet_type = bullet_type
+
+ak = Ak47("ak-47", 47, "low", 7)
+m4 = M4("M4", 42, "fast", 5)
+print(ak.name)
+print(ak.dmg)
+print(ak.bullet_type)
+print(m4.bullet_type)
