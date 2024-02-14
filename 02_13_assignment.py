@@ -31,42 +31,61 @@
 
 # 2.
 ## 함수 선언 부분 ##
-def printPoly(arr):
-    polyStr = "P(x) = "
+# def printPoly(arr):
+#     polyStr = "P(x) = "
+#
+#     for i in range(len(arr[0])):
+#         term = arr[0][i]  # 항 차수
+#         coef = arr[1][i]  # 계수
+#
+#         if (coef >= 0):
+#             polyStr += "+"
+#         polyStr += str(coef) + "x^" + str(term) + " "
+#
+#     return polyStr
+#
+#
+# def calcPoly(xVal, arr):
+#     retValue = 0
+#
+#     for i in range(len(arr[0])):
+#         term = arr[0][i]  # 항 차수
+#         coef = arr[1][i]  # 계수
+#         retValue += coef * xValue ** term
+#
+#     return retValue
+#
+#
+# ## 전역 변수 선언 부분 ##
+# arr = [[300, 20, 0],
+#        [7, -4, 5]]
+#
+# ## 메인 코드 부분 ##
+# if __name__ == "__main__":
+#     # pStr = printPoly(tx, px)
+#     pStr = printPoly(arr)
+#     print(pStr)
+#
+#     xValue = int(input("X 값-->"))
+#
+#     pxValue = calcPoly(xValue, arr)
+#     print(pxValue)
 
-    for i in range(len(arr[0])):
-        term = arr[0][i]  # 항 차수
-        coef = arr[1][i]  # 계수
-
-        if (coef >= 0):
-            polyStr += "+"
-        polyStr += str(coef) + "x^" + str(term) + " "
-
-    return polyStr
 
 
-def calcPoly(xVal, arr):
-    retValue = 0
+# 3.
+class Linked_list :
+    def __init__(self):
+        self.data = None
+        self.link = None
 
-    for i in range(len(arr[0])):
-        term = arr[0][i]  # 항 차수
-        coef = arr[1][i]  # 계수
-        retValue += coef * xValue ** term
+def Insert_email(info) :
+    # 맨 처음에 추가할 때
+    # 중간에 추가할 때
+    # 마지막에 추가할 때
+    pass
 
-    return retValue
-
-
-## 전역 변수 선언 부분 ##
-arr = [[300, 20, 0],
-       [7, -4, 5]]
-
-## 메인 코드 부분 ##
-if __name__ == "__main__":
-    # pStr = printPoly(tx, px)
-    pStr = printPoly(arr)
-    print(pStr)
-
-    xValue = int(input("X 값-->"))
-
-    pxValue = calcPoly(xValue, arr)
-    print(pxValue)
+while True :
+    name = input("이름--> ")
+    mail = input("이메일--> ")
+    info = (name, mail)
