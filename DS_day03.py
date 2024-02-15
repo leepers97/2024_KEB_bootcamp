@@ -102,9 +102,17 @@ def Fibo_dp(number : int) -> int :
 		memo[number] = result
 	return result
 
+
+def Prac1(dist, start, end) :
+	if start >= end :
+		return start
+	print(start)
+	return Prac1(dist, start + dist, end)
+
 # print(Recursion(5))
 # print(Decimal_to_octal(10))
 # print(Plus(10))
 # print(Star(5))
 # print(Fibo(9))
-print(Fibo_dp(40))
+# print(Fibo_dp(40))
+# print(Prac1(5, 0, 100))
