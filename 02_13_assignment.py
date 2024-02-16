@@ -74,18 +74,65 @@
 
 
 # 3.
-class Linked_list :
-    def __init__(self):
-        self.data = None
-        self.link = None
+# class Linked_list :
+#     def __init__(self):
+#         self.data = None
+#         self.link = None
+#
+# def Insert_email(info) :
+#     global head, arr
+#     node = Linked_list()
+#     node.data = info[0]
+#     # 맨 처음에 추가할 때
+#     if head == None :
+#         head = node
+#         arr.append(head)
+#     # 중간에 추가할 때
+#     cur = head
+#     comp_email = [cur.link, info.link]
+#     comp_email.sort()
+#     if comp_email[1] == info.link :
+#         arr
+#     # 마지막에 추가할 때
+#     pass
+#
+# arr = []
+# while True :
+#     name = input("이름--> ")
+#     mail = input("이메일--> ")
+#     info = (name, mail)
+#     Insert_email(info)
 
-def Insert_email(info) :
-    # 맨 처음에 추가할 때
-    # 중간에 추가할 때
-    # 마지막에 추가할 때
-    pass
 
-while True :
-    name = input("이름--> ")
-    mail = input("이메일--> ")
-    info = (name, mail)
+
+# 정렬기본 1.
+# arr = [["선미", 88], ["초아", 99], ["화사", 71], ["영탁", 78], ["영웅", 67], ["민호", 92]]
+# sorted_arr = []
+# while len(arr) > 0 :
+#     min_ele = min(arr, key= lambda item : item[1])
+#     sorted_arr.append(min_ele)
+#     arr.remove(min_ele)
+#
+# start = 0
+# end = len(sorted_arr) - 1
+# while True :
+#     print(f"{sorted_arr[start]} : {sorted_arr[end]}")
+#     if end - start == 1 :
+#         break
+#     start += 1
+#     end -= 1
+
+
+
+# 정렬기본 2.
+arr = [[55, 33, 250, 44],
+       [88, 1, 67, 23],
+       [199, 222, 38, 47],
+       [155, 145, 20, 99]]
+arr2 = []
+for i in range(len(arr)) :
+    for k in range(len(arr[i])) :
+        arr2.append(arr[i][k])
+
+arr2.sort()
+print(arr2[len(arr2) // 2])

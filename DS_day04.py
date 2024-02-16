@@ -41,28 +41,55 @@
 
 
 ## 함수 선언 부분 ##
-def quickSort(ary):
-    n = len(ary)
-    if n <= 1:  # 정렬할 리스트의 개수가 1개 이하면
-        return ary
+# def quickSort(ary):
+#     n = len(ary)
+#     if n <= 1:  # 정렬할 리스트의 개수가 1개 이하면
+#         return ary
+#
+#     pivot = ary[n // 2]  # 기준값을 중간값으로 지정
+#     leftAry, rightAry = [], []
+#
+#     for num in ary:
+#         if num < pivot:
+#             leftAry.append(num)
+#         elif num > pivot:
+#             rightAry.append(num)
+#
+#     return quickSort(leftAry) + [pivot] + quickSort(rightAry)
+#
+#
+# ## 전역 변수 선언 부분 ##
+# dataAry = [188, 150, 168, 162, 105, 120, 177, 50]
+#
+# ## 메인 코드 부분 ##
+# print('정렬 전 -->', dataAry)
+# dataAry = quickSort(dataAry)
+# print('정렬 후 -->', dataAry)
+from collections import deque
 
-    pivot = ary[n // 2]  # 기준값을 중간값으로 지정
-    leftAry, rightAry = [], []
+n, m, k, x = map(int, input().split())
+g = [[] for _ in range(n + 1)]
 
-    for num in ary:
-        if num < pivot:
-            leftAry.append(num)
-        elif num > pivot:
-            rightAry.append(num)
+for _ in range(m) :
+    s, e = map(int, input().split())
+    g[s].append(e)
 
-    return quickSort(leftAry) + [pivot] + quickSort(rightAry)
+d = [-1] * (n + 1)
+d[x] = 0
 
+q = deque([x])
+while q :
+    now = q.popleft()
+    for next in g[now] :
+        if d[next] == 1 :
+            d[next] = d[now] + 1
+            q.append(next)
 
-## 전역 변수 선언 부분 ##
-dataAry = [188, 150, 168, 162, 105, 120, 177, 50]
+check = False
+for i in range(1, n + 1) :
+    if d[i] == k :
+        print(i)
+        check = True
 
-## 메인 코드 부분 ##
-print('정렬 전 -->', dataAry)
-dataAry = quickSort(dataAry)
-print('정렬 후 -->', dataAry)
-
+if check == False :
+    print(-1)
