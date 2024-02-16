@@ -81,7 +81,10 @@ def Plus(n) :
 	return n + Plus(n - 1)
 
 
+cnt1 = 0
 def Fibo(n) :
+	global cnt1
+	cnt1 += 1
 	a = 0
 	b = 1
 	for _ in range(n) :
@@ -91,8 +94,10 @@ def Fibo(n) :
 
 
 memo = [None for _ in range(100)]
+cnt2 = 0
 def Fibo_dp(number : int) -> int :
-	global memo
+	global memo, cnt2
+	cnt2 += 1
 	if memo[number] != None :
 		return memo[number]
 	if number < 2 :
@@ -109,10 +114,25 @@ def Prac1(dist, start, end) :
 	print(start)
 	return Prac1(dist, start + dist, end)
 
+count_dp, count_recu = 0, 0
+def recu_fibo(n) :
+	global  count_recu
+	count_recu += 1
+	if n < 2 :
+		return 1
+	else :
+		return recu_fibo(n-1) + recu_fibo(n-2)
+
 # print(Recursion(5))
 # print(Decimal_to_octal(10))
 # print(Plus(10))
 # print(Star(5))
-# print(Fibo(9))
-# print(Fibo_dp(40))
+print(Fibo(31))
+print(cnt1)
+print(Fibo_dp(31))
+print(cnt2)
+
+# res = recu_fibo(30)
+# print('재귀 방식 --> 답:', res, ', 반복수 : ', count_recu)
+
 # print(Prac1(5, 0, 100))
